@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Formik, Field, Form } from "formik";
+import { useForm } from "react-hook-form";
 
 import "../../../styles/components/productList/Add-Product/Add-Product.scss";
 
@@ -9,6 +9,14 @@ import Button from "react-bootstrap/Button";
 const AddProduct = ({ addNewProduct }) => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   const [fields, setFields] = useState({
     img: "",
@@ -119,10 +127,12 @@ const AddProduct = ({ addNewProduct }) => {
         show={show}
         onClose={() => setShow(false)}
       >
-        <Toast.Header>
-          <strong className="mr-auto">Add a new product to the list</strong>
-        </Toast.Header>
-
+        <button
+          onClick={() => setShow(false)}
+          style={{ position: "absolute", top: "5px", right: "5px" }}
+        >
+          ✕
+        </button>
         <Toast.Body>
           <form
             onSubmit={(e) => {
@@ -135,9 +145,7 @@ const AddProduct = ({ addNewProduct }) => {
             }}
           >
             <fieldset>
-              <label htmlFor="img">
-                Upload image: <em>*</em>
-              </label>
+              <label htmlFor="img">Upload image:</label>
               <input
                 id="img"
                 name="img"
@@ -149,9 +157,7 @@ const AddProduct = ({ addNewProduct }) => {
             <hr />
 
             <fieldset>
-              <label htmlFor="info">
-                Enter info about product: <em>*</em>
-              </label>
+              <label htmlFor="info">Enter info about product:</label>
               <input id="info" name="info" type="text" required />
             </fieldset>
             <hr />
@@ -163,7 +169,12 @@ const AddProduct = ({ addNewProduct }) => {
                 <input id="expires-true" name="expires" type="radio" />
                 <label htmlFor="expires">Yes</label>
 
-                <input id="expires-false" name="expires" type="radio" defaultChecked />
+                <input
+                  id="expires-false"
+                  name="expires"
+                  type="radio"
+                  defaultChecked
+                />
                 <label htmlFor="expires">No</label>
               </div>
             </fieldset>

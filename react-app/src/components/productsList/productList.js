@@ -5,7 +5,8 @@ import lenovoIdeapadGaming3 from "../../images/lenovo-ideapad-gaming3.png";
 import lenovoThinkbook16 from "../../images/lenovo-thinkbook16.png";
 import hpVictusGaming16 from "../../images/hp-victus-gaming-16.png";
 import macbookAir13M2 from "../../images/macbook-air-13.6-m2.png";
-
+import macbookPro14M2Pro from "../../images/macbook-pro-14-m2-pro.png";
+import redmibookPro14 from "../../images/redmi-book-pro-14.png";
 
 export const taskList = [
   {
@@ -94,7 +95,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: lenovoThinkbook16,
+    image: hpVictusGaming16,
     info: "Ноутбук Lenovo ThinkBook 16",
     price: "52999",
     expire: true,
@@ -108,31 +109,30 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: lenovoThinkbook16,
-    info: "Ноутбук Lenovo ThinkBook 16",
-    price: "52999",
-    expire: true,
+    image: redmibookPro14,
+    info: "Ноутбук Xiaomi Redmi Book Pro 14",
+    price: "34999",
+    expire: false,
 
     more: {
-      processor: "Intel Core i5-13500H",
-      ram: "32GB",
+      processor: "Intel Ultra 5",
+      ram: "16GB",
       storage: "512GB SSD",
-      display: "16.1\"",
+      display: "14.6\"",
     }
   },
   {
     id: Math.random(),
-    image: lenovoThinkbook16,
-    info: "Ноутбук Lenovo ThinkBook 16",
-    price: "52999",
-    expire: true,
+    image: macbookPro14M2Pro,
+    info: "Ноутбук Apple MacBook Pro 14\" M2 Pro",
+    price: "75 999",
+    expire: false,
 
     more: {
-      processor: "Intel Core i5-13500H",
-      ram: "32GB",
+      processor: "M2 Pro",
+      ram: "16GB",
       storage: "512GB SSD",
-      display: "16.1\"",
+      display: "14.2\"",
     }
   },
-
 ];

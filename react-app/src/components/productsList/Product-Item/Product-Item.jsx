@@ -1,50 +1,48 @@
 import React, { useState, useEffect } from "react";
 
-import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse";
-
 import "../../../styles/components/productList/Product-Item/Product-Item.scss";
-import { SeparatorVertical } from "lucide-react";
 
 const ProductItem = ({ image, info, price, expire, more }) => {
-  const [readmore, setReadmore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleReadmore = () => {
+    if (showMore) setShowMore(false);
+    else setShowMore(true);
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", (e) => setReadmore(false));
-  }, [readmore]);
+    window.addEventListener("scroll", () => setShowMore(false));
+  }, [showMore]);
 
   return (
-    <>
-      <ul className="product">
-        <div className="product__content">
-          <li className="product__item product__image">
-            <img src={image} alt="product-image" />
-          </li>
-          <li className="product__item product__info">{info}</li>
+    <ul className="product">
+      <div className="product__content">
+        <li className="product__item product__image">
+          <img src={image} alt="product-image" />
+        </li>
+        <li className="product__item product__info">{info}</li>
 
-          <li
-            className=" product__item product__expire"
-            style={{ color: expire ? "#ff5c00" : "#00a046" }}
-          >
-            {expire ? "Expires" : "In stock"}
-          </li>
-          <li className="product__item product__price">{price}₴</li>
+        <li
+          className=" product__item product__expire"
+          style={{ color: expire ? "#ff5c00" : "#00a046" }}
+        >
+          {expire ? "Expires" : "In stock"}
+        </li>
+        <li className="product__item product__price">{price}₴</li>
+      </div>
 
-          <button onClick={() => setReadmore(!readmore)}>
-            {readmore ? "Less" : "More"}
-          </button>
+      <details className="description">
+        <summary onClick={() => toggleReadmore()}>
+          {showMore ? "Less" : "More"}
+        </summary>
+        <div className="description__hidden">
+          <p className="description__hidden-inner">
+            <span>{more.processor}</span> / <span>{more.ram}</span> /{" "}
+            <span>{more.storage}</span> / <span>{more.display}</span>
+          </p>
         </div>
-
-        <div className={`description ${readmore && "visible"}`}>
-          <div className={"description__hidden-content"}>
-            heello
-            <p className="description__hidden-inner">
-              {more.processor} / {more.ram} / {more.storage} / {more.display}
-            </p>
-          </div>
-        </div>
-      </ul>
-    </>
+      </details>
+    </ul>
   );
 };
 
