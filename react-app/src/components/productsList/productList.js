@@ -11,7 +11,7 @@ import redmibookPro14 from "../../images/redmi-book-pro-14.png";
 export const taskList = [
   {
     id: Math.random(),
-    image: hpPavilion14,
+    image: "../../images/hp-pavilion-14.png",
     info: "Ноутбук HP Laptop 14",
     price: "26099",
     expire: true,
@@ -25,7 +25,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: asusTufGaming15,
+    image: "../../images/asus-tuf-gaming-15.png",
     info: "Ноутбук ASUS TUF Gaming A15 (2023)",
     price: "36999",
     expire: false,
@@ -39,7 +39,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: acerAspire7,
+    image: "../../images/acer-aspire-7.png",
     info: "Ноутбук Acer Aspire 7",
     price: "31999",
     expire: true,
@@ -53,7 +53,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: lenovoIdeapadGaming3,
+    image: "../../images/lenovo-ideapad-gaming3.png",
     info: "Ноутбук Lenovo Ideapad Gaming 3",
     price: "31999",
     expire: false,
@@ -67,7 +67,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: lenovoThinkbook16,
+    image: "../../images/lenovo-thinkbook16.png",
     info: "Ноутбук Lenovo ThinkBook 16",
     price: "39999",
     expire: false,
@@ -81,7 +81,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: macbookAir13M2,
+    image: "../../images/hp-victus-gaming-16.png",
     info: "Ноутбук MacBook Air 13.6 M2",
     price: "48499",
     expire: true,
@@ -95,7 +95,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: hpVictusGaming16,
+    image: "../../images/hp-victus-gaming-16.png",
     info: "Ноутбук Lenovo ThinkBook 16",
     price: "52999",
     expire: true,
@@ -109,7 +109,7 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: redmibookPro14,
+    image: "../../images/macbook-pro-14-m2-pro.png",
     info: "Ноутбук Xiaomi Redmi Book Pro 14",
     price: "34999",
     expire: false,
@@ -123,9 +123,9 @@ export const taskList = [
   },
   {
     id: Math.random(),
-    image: macbookPro14M2Pro,
+    image: "../../images/macbook-pro-14-m2-pro.png",
     info: "Ноутбук Apple MacBook Pro 14\" M2 Pro",
-    price: "75 999",
+    price: "75999",
     expire: false,
 
     more: {

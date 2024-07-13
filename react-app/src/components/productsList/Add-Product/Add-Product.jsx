@@ -5,15 +5,16 @@ import "../../../styles/components/productList/Add-Product/Add-Product.scss";
 
 import Toast from "react-bootstrap/Toast";
 import Button from "react-bootstrap/Button";
+import { Link } from "lucide-react";
 
 const AddProduct = ({ addNewProduct }) => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+  const [imgName, setImgName] = useState("");
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -34,22 +35,39 @@ const AddProduct = ({ addNewProduct }) => {
     setFields({ ...fields, [name]: value });
   };
 
+  // document
+  //   .getElementById("fileInput")
+  //   .addEventListener("change", function (event) {
+  //     const filePath = event.target.value;
+  //     const fileName = filePath.split("\\").pop();
+  //   });
+
   const addProduct = (data) => {
-    if (isEmptyFields(data)) return;
+    // if (isEmptyFields(data)) return;
+
+    // let img = document.getElementById("img");
+    // const img_path = `C:\\Users\\dmytro\\Desktop\\Git\\React_Homework_4\\react-app\\src\\images\\${img.target.value
+    //   .split("\\")
+    //   .pop()}`;
 
     const newProduct = {
       id: Math.random(),
-      image: data.img,
-      info: data.info,
-      expire: data.expire,
-      price: data.price,
+      image: `C:\\Users\\dmytro\\Desktop\\Git\\React_Homework_4\\react-app\\src\\images\\${data.img.name}`,
+      info: data.info.value,
+      expire: data.expires,
+      price: data.price.value,
       more: {
-        processor: data.processor,
-        ram: data.ram,
-        storage: data.storage,
-        display: data.display,
+        processor: data.processor.value,
+        ram: data.ram.value,
+        storage: data.storage.value,
+        display: data.display.value,
       },
     };
+
+    const values = data.img.name;
+
+    console.log(newProduct);
+    console.log(values);
 
     // Clear all fields
     // clearFields();
@@ -71,7 +89,6 @@ const AddProduct = ({ addNewProduct }) => {
       storage: data.storage,
       display: data.display,
     };
-    console.log(data.img);
 
     return Object.values(inputs).some((input) => input === "");
   };
@@ -102,25 +119,14 @@ const AddProduct = ({ addNewProduct }) => {
   //   });
   // };
 
-  const clearFields = () => {
-    setFields({
-      img: "",
-      info: "",
-      expire: false,
-      price: "",
-      processor: "",
-      ram: "",
-      storage: "",
-      display: "",
-    });
-  };
-
   useEffect(() => {
     localStorage.setItem("dataKey", JSON.stringify(data));
   }, [data]);
 
   return (
     <>
+      <label data-action-label="Choose Files">Choose file</label>
+
       {!show && <Button onClick={() => setShow(true)}>Add product</Button>}
       <Toast
         className="add-product-popup"
@@ -139,7 +145,6 @@ const AddProduct = ({ addNewProduct }) => {
               e.preventDefault();
               const formData = new FormData(e.target);
               const data = Object.fromEntries(formData.entries());
-              console.log(data);
               addProduct(data);
               setShow(false);
             }}
@@ -180,6 +185,7 @@ const AddProduct = ({ addNewProduct }) => {
             </fieldset>
             <hr />
 
+            {/* Price */}
             <fieldset>
               <label htmlFor="price">Price:</label>
               <input id="price" name="price" type="text" required />

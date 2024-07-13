@@ -18,7 +18,7 @@ const ProductItem = ({ image, info, price, expire, more }) => {
     <ul className="product">
       <div className="product__content">
         <li className="product__item product__image">
-          <img src={image} alt="product-image" />
+          <img src={require(image)} alt="product-image" />
         </li>
         <li className="product__item product__info">{info}</li>
 

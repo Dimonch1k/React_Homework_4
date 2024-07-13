@@ -13,14 +13,21 @@ const ProductsList = () => {
 
   const addNewProduct = (product) => {
     setProducts([...products, product]);
+
+    // setProducts([...products, {}])
   };
 
   return (
     <div>
       <Container className="p-3">
-        {/* Add Product */}
-        <AddProduct addNewProduct={addNewProduct} />
+        <div className="catalog-settings">
+          {/* Add Product */}
+          <AddProduct addNewProduct={addNewProduct} />
 
+          {/* Sorting */}
+
+          {/*  */}
+        </div>
         <div className="product-list">
           {products.map((task) => (
             <ProductItem
