@@ -5,134 +5,46 @@ import "../../../styles/components/productList/Add-Product/Add-Product.scss";
 
 import Toast from "react-bootstrap/Toast";
 import Button from "react-bootstrap/Button";
-import { Link } from "lucide-react";
 
 const AddProduct = ({ addNewProduct }) => {
-  const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
-  const [imgName, setImgName] = useState("");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-
-  const [fields, setFields] = useState({
-    img: "",
-    info: "",
-    expire: false,
-    price: "",
-    processor: "",
-    ram: "",
-    storage: "",
-    display: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFields({ ...fields, [name]: value });
-  };
-
-  // document
-  //   .getElementById("fileInput")
-  //   .addEventListener("change", function (event) {
-  //     const filePath = event.target.value;
-  //     const fileName = filePath.split("\\").pop();
-  //   });
 
   const addProduct = (data) => {
-    // if (isEmptyFields(data)) return;
+    const file = data.img;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imageData = reader.result;
+      console.log(reader);
 
-    // let img = document.getElementById("img");
-    // const img_path = `C:\\Users\\dmytro\\Desktop\\Git\\React_Homework_4\\react-app\\src\\images\\${img.target.value
-    //   .split("\\")
-    //   .pop()}`;
-
-    const newProduct = {
-      id: Math.random(),
-      image: `C:\\Users\\dmytro\\Desktop\\Git\\React_Homework_4\\react-app\\src\\images\\${data.img.name}`,
-      info: data.info.value,
-      expire: data.expires,
-      price: data.price.value,
-      more: {
-        processor: data.processor.value,
-        ram: data.ram.value,
-        storage: data.storage.value,
-        display: data.display.value,
-      },
+      const newProduct = {
+        id: Math.random(),
+        image: imageData, // base64-encoded image data
+        info: data.info,
+        expire: data.expires,
+        price: data.price,
+        more: {
+          processor: data.processor,
+          ram: data.ram.value,
+          storage: data.storage,
+          display: data.display,
+        },
+      };
+      addNewProduct({ ...newProduct });
+      console.log({ ...newProduct });
     };
-
-    const values = data.img.name;
-
-    console.log(newProduct);
-    console.log(values);
-
-    // Clear all fields
-    // clearFields();
-
-    // Send data to localStorage to verify if data can be stored into list
-    // setData([...data, newProduct]);
-
-    // Add new product
-    addNewProduct({ ...newProduct });
+    reader.readAsDataURL(file);
   };
-
-  // Check if all fields are filled
-  const isEmptyFields = (data) => {
-    const inputs = {
-      info: data.info,
-      price: data.price,
-      processor: data.processor,
-      ram: data.ram,
-      storage: data.storage,
-      display: data.display,
-    };
-
-    return Object.values(inputs).some((input) => input === "");
-  };
-
-  // Check if file is image file
-  const matchFileType = (file) => {
-    const extension = getExtension(file).toLowerCase();
-    return /^(jpg|jpeg|png|gif|webp|tiff|bmp)$/.test(extension);
-  };
-
-  // Get extension of some files
-  const getExtension = (file) => {
-    return file.split(".").pop();
-  };
-
-  // Set placeholder notification for empty fields
-  // const notifyPlaceholders = (fields, fieldsIndexes) => {
-  //   const placeholders = [
-  //     "Enter product info",
-  //     "Enter price",
-  //     "Enter processor model",
-  //     "Enter RAM size",
-  //     "Enter storage size",
-  //     "Enter display size",
-  //   ];
-  //   fieldsIndexes.forEach((index) => {
-  //     fields[index].placeholder = `${placeholders[index]} (must be filled)`;
-  //   });
-  // };
-
-  useEffect(() => {
-    localStorage.setItem("dataKey", JSON.stringify(data));
-  }, [data]);
 
   return (
     <>
-      <label data-action-label="Choose Files">Choose file</label>
-
       {!show && <Button onClick={() => setShow(true)}>Add product</Button>}
-      <Toast
-        className="add-product-popup"
-        show={show}
-        onClose={() => setShow(false)}
-      >
+      <Toast className="add-product-popup" show={show}>
         <button
           onClick={() => setShow(false)}
           style={{ position: "absolute", top: "5px", right: "5px" }}
@@ -222,7 +134,7 @@ const AddProduct = ({ addNewProduct }) => {
 
             {/* Submit Button */}
             <Button type="submit" size="sm" style={{ width: "100%" }}>
-              Add
+              Add Product
             </Button>
           </form>
         </Toast.Body>

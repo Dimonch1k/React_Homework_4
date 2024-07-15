@@ -4,6 +4,7 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.75rem;
     position: fixed;
+    top: 1rem;
     z-index: 10;
     background-color: white;
 
@@ -14,7 +15,7 @@
         label {
             margin: 0;
             padding: 0;
-            width: auto;
+            width: 100%;
         }
 
         input[type="radio"]#expires-true {
@@ -83,8 +84,8 @@ input[type="file"]::file-selector-button {
     }
 }
 
-label {
-    width: 100%;
+input[type="radio"] {
+    flex-shrink: 0;
 }
 
 hr {

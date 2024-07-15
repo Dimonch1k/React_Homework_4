@@ -34,6 +34,13 @@ details summary {
   list-style: none;
 }
 
+.catalog-settings {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
 .product-list {
   font-family: Arial, "Segoe UI", Roboto, Helvetica, sans-serif;
   font-weight: 400;
@@ -42,4 +49,9 @@ details summary {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
   grid-gap: 10px;
+
+  &.rows {
+    display: flex;
+    flex-direction: column;
+  }
 }

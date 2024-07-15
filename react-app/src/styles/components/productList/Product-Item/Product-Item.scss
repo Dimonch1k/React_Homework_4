@@ -15,10 +15,28 @@
   &__content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: relative;
 
     padding: 5px 0;
     height: max-content;
+
+    &.inline-content {
+      flex-direction: row;
+      margin-top: 10px;
+
+      .grid-rows-info {
+        margin-left: 10px;
+      }
+
+      .product__item {
+        height: max-content;
+      }
+
+      .product__info {
+        text-align: left;
+      }
+    }
   }
 
   &__item {
@@ -28,7 +46,7 @@
   &__image {
     position: relative;
     min-height: 140px;
-    max-width: 200px;
+    width: 180px;
 
     img {
       position: absolute;
@@ -95,7 +113,7 @@
         0px 10px 10px 0px rgb(222, 222, 222);
 
       position: absolute;
-      z-index: 100;
+      z-index: 5;
     }
 
     &__hidden-inner {

@@ -1,37 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "../../../styles/components/productList/Product-Item/Product-Item.scss";
+import classNames from "classnames";
 
-const ProductItem = ({ image, info, price, expire, more }) => {
+const ProductItem = ({ image, info, price, expire, more, gridRows }) => {
   const [showMore, setShowMore] = useState(false);
+  const detailsRef = useRef(null);
 
   const toggleReadmore = () => {
-    if (showMore) setShowMore(false);
-    else setShowMore(true);
+    setShowMore(!showMore);
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => setShowMore(false));
-  }, [showMore]);
+    const closeDetailsOnScroll = () => {
+      if (detailsRef.current) {
+        detailsRef.current.open = false;
+        setShowMore(false);
+      }
+    };
+
+    window.addEventListener("scroll", closeDetailsOnScroll);
+
+    return () => {
+      window.removeEventListener("scroll", closeDetailsOnScroll);
+    };
+  }, []);
 
   return (
     <ul className="product">
-      <div className="product__content">
+      <div
+        className={classNames("product__content", {
+          "inline-content": gridRows,
+        })}
+      >
         <li className="product__item product__image">
-          <img src={require(image)} alt="product-image" />
+          <img src={image} alt="product-image" />
         </li>
-        <li className="product__item product__info">{info}</li>
 
-        <li
-          className=" product__item product__expire"
-          style={{ color: expire ? "#ff5c00" : "#00a046" }}
-        >
-          {expire ? "Expires" : "In stock"}
-        </li>
-        <li className="product__item product__price">{price}₴</li>
+        <div className={gridRows && "grid-rows-info"}>
+          <li className="product__item product__info">{info}</li>
+
+          <li
+            className=" product__item product__expire"
+            style={{ color: expire ? "#ff5c00" : "#00a046" }}
+          >
+            {expire ? "Expires" : "In stock"}
+          </li>
+          <li className="product__item product__price">{price}₴</li>
+        </div>
       </div>
 
-      <details className="description">
+      <details className="description" ref={detailsRef}>
         <summary onClick={() => toggleReadmore()}>
           {showMore ? "Less" : "More"}
         </summary>
